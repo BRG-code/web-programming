@@ -1,0 +1,62 @@
+/* 서브 타이틀 "교육 프로그램" 속성 정의 */
+.sub-title {
+    height: 200px;
+    /* 상대 경로 ../ = web 폴더임. 헷갈리지 않도록 주의 */
+    background: url("../image/bg_sub_title.png") no-repeat center center;
+    background-size: cover;
+}
+
+.sub-title h2 {
+    text-align: center;
+    color: #ffffff;
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 200px;
+}
+
+/* 캡스톤 디자인 신청 버튼 속성 */
+.board-btn { width:100%; padding:10px 0}
+
+.board-btn #write {
+    width: 120px; float:right;
+    margin: 10px 0; padding: 8px 10px;
+    border: 1px solid #000; border-radius: 3px;
+    background: #444444; text-align: center;
+    font-size: 11pt; color: #ffffff;}
+
+/* 캡스톤 디자인 신청 버튼에 마우스를 올렸을 때 */
+.board-btn #write:hover {
+    background: #111111;
+    transition: all 0.2s linear
+}
+
+/* Table Styles */
+.cap-list {
+    width: 97%;
+    align-content: center;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.cap-list thead {
+    line-height: 50px;
+    border-top: 3px solid #000000;
+    border-bottom: 1px solid #000000;
+}
+
+.cap-list tbody {
+    line-height: 50px;
+    border-bottom: 1px solid #000000;
+}
+
+.cap-list tr {
+    border-bottom: 1px solid #000000;
+}
+
+.cap-list td {
+    text-align: center;
+}
+
+.cap-list th {
+    text-align: center;
+}
