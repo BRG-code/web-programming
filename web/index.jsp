@@ -47,7 +47,7 @@
     <h3 style="margin-left: 30px; font-weight: bold; font-size: 24pt">캡스톤디자인</h3>
     <div class="sub7_tab_menu" style="text-align: center;">
       <a class="sub7_tab check" href="" style="display: inline-block;">소개</a>
-      <a class="sub7_tab" href="" style="display: inline-block;">공지사항</a>
+      <a class="sub7_tab" href="./js/notice.jsp" style="display: inline-block;">공지사항</a>
       <a class="sub7_tab" href="" style="display: inline-block;">서식</a>
       <a class="sub7_tab" href="" style="display: inline-block;">성과</a>
 
@@ -89,9 +89,13 @@
         <td>Content</td>
         <td>Content</td>
       </tr>
-      <tbody>
+      </tbody>
     </table>
   </div>
 </div>
+
+<!-- 이쁘게 보이기 위한 공백 -->
+<div style="width: 100%; height: 100px;"></div>
+
 </body>
 </html>
