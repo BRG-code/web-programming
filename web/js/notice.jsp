@@ -80,7 +80,7 @@
           <td style="width: 10%">${row.view}</td>
           <!-- 첨부파일이 있다면 파일 아이콘을 표시. 첨부파일이 없다면 아무 것도 표시 안함.-->
           <c:choose>
-            <c:when test="${row.file eq 1}">
+            <c:when test="${row.file == 1}">
               <td style="width: 10%;"><img src="../image/icon_file.png"></td>
             </c:when>
             <c:otherwise>
@@ -89,6 +89,7 @@
           </c:choose>
         </tr>
       </c:forEach>
+      
       </tbody>
     </table>
   </div>
