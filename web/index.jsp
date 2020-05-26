@@ -22,6 +22,7 @@
 </div>
 
 <div style="margin-left: 100px; margin-right: 100px;" id="content" class="content">
+
   <div>
     <h3 style="margin-left: 30px; font-weight: bold; font-size: 24pt">캡스톤디자인</h3>
     <div class="sub7_tab_menu" style="text-align: center;">
