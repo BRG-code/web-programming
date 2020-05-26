@@ -15,7 +15,7 @@
 }
 
 /* 캡스톤 디자인 신청 버튼 속성 */
-.board-btn { width:100%; padding:10px 0}
+.board-btn { width:100%; padding:10px 0 }
 
 .board-btn #write {
     width: 120px; float:right;
@@ -28,6 +28,27 @@
 .board-btn #write:hover {
     background: #111111;
     transition: all 0.2s linear
+}
+
+/* 서브 탭 */
+.sub7_tab_menu{
+    margin-top: 20px;
+}
+.sub7_tab_menu > .sub7_tab{
+    display: inline-block;
+    border: 1px solid #e1e1e1;
+    border-bottom: none;
+    width: 24%;
+    text-align: center;
+    line-height: 40px;
+    background: #eee;
+    color: #000000;
+    font-size: 12pt;
+}
+
+.check{
+    background-color: #ffffff!important;
+    border-top:3px solid #0075c2!important;
 }
 
 /* Table Styles */
@@ -59,4 +80,51 @@
 
 .cap-list th {
     text-align: center;
+}
+
+a:link {
+    color: #000000;
+}
+
+a:visited {
+    color: #000000;
+}
+
+a:hover {
+    color: #000000;
+    text-decoration: none;
+}
+
+select {
+    width: 100px;
+    height: 30px;
+    padding-left: 5px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 1px solid #999;
+    appearance: none;
+    background: url("https://lincplus.mokpo.ac.kr/images/bg_select_down.png") no-repeat 95% 50%; /* 화살표 모양의 이미지 */
+}
+select::-ms-expand { display: none; }
+
+* {
+    box-sizing: border-box;
+}
+
+/* Style the search field */
+form.example input[type=text] {
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    float: left;
+    width: 80%;
+    background: #f1f1f1;
+}
+
+.search-btn {
+    padding: 5px 10px 5px 5px;
+    margin-left: 15px;
+    font-size: 12pt;
+    color: white;
+    background: #242424;
 }

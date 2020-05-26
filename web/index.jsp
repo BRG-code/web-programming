@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <title>캡스톤디자인</title>
   <!-- css 선언 -->
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -22,27 +22,6 @@
 </div>
 
 <div style="margin-left: 100px; margin-right: 100px;" id="content" class="content">
-  <style>
-    .sub7_tab_menu{
-      margin-top:20px;
-    }
-    .sub7_tab_menu > .sub7_tab{
-      display: inline-block;
-      border: 1px solid #e1e1e1;
-      border-bottom: none;
-      width: 24%;
-      text-align: center;
-      line-height: 40px;
-      background: #eee;
-      color: #000000;
-      font-size: 12pt;
-    }
-    .check{
-      background-color: #ffffff!important;
-      border-top:3px solid #0075c2!important;
-    }
-  </style>
-
   <div>
     <h3 style="margin-left: 30px; font-weight: bold; font-size: 24pt">캡스톤디자인</h3>
     <div class="sub7_tab_menu" style="text-align: center;">
