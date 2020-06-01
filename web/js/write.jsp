@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: cocoblue
-  Date: 2020/05/26
-  Time: 3:50 오후
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import = "java.io.PrintWriter"%>
 <%@ page import = "com.oreily.servlet.*"%>
@@ -22,7 +15,8 @@
            required>
     <br><br>
     프로젝트 소개 <br>
-    <textarea name="project" rows="8" cols="50"
+  
+    <textarea name="contents" rows="8" cols="50"
               placeholder="내용을 기술해주세요."
               required></textarea>
     <br><br>
