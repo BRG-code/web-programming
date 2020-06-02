@@ -13,7 +13,10 @@
 
 <!-- 웹 페이지 윗 부분의 사업단 로고 부분 -->
 <div style="background-color: white; height: 70px; width: 100%;">
-  <img style="margin-left: 15px; align-content: center;" src="image/logo.png">
+  <a href="index.jsp"><img style="margin-left: 15px; align-content: center;" src="image/logo.png"></a>
+  <a href="js/register.jsp" style="display: inline; float: right; margin-top: 20px; margin-right: 10px;"><p>회원 가입</p></a>
+  <p style="margin-top: 20px; margin-right: 10px; float: right; display: inline"> / </p>
+  <a href="" style="display: inline; float: right; margin-top: 20px; margin-right: 10px;"><p>로그인</p></a>
 </div>
 
 <!-- 교육 프로그램 부분 -->
@@ -22,7 +25,6 @@
 </div>
 
 <div style="margin-left: 100px; margin-right: 100px;" id="content" class="content">
-
   <div>
     <h3 style="margin-left: 30px; font-weight: bold; font-size: 24pt">캡스톤디자인</h3>
     <div class="sub7_tab_menu" style="text-align: center;">
@@ -32,7 +34,7 @@
       <a class="sub7_tab" href="" style="display: inline-block;">성과</a>
 
       <div class="board-btn" style="float: right; margin-right: 30px; margin-bottom: 15px;">
-        <a href="">
+        <a href="./js/write.jsp">
           <button id="write" data-align="right">캡스톤<br>디자인신청</button>
         </a>
       </div>

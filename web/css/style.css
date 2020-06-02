@@ -128,3 +128,34 @@ form.example input[type=text] {
     color: white;
     background: #242424;
 }
+
+.write-area {
+    margin: 0;
+    padding: 0;
+}
+
+/* 글 쓰는 영역 폼 */
+.write-area input {
+    height: 25px;
+    margin-bottom: 10px;
+    font-size: 12pt;
+    display: inline;
+}
+
+.write-area form {
+    margin: 0 auto;
+    width: 500px;
+}
+
+.write-area h3 {
+    font-size: 14pt;
+    display: inline;
+}
+
+.write-area textarea {
+    margin-bottom: 10px;
+}
+
+.write-area div {
+    margin: 0 auto;
+}

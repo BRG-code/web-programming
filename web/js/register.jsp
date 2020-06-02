@@ -7,14 +7,14 @@
     <!-- css 선언 -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
 <!-- 웹 페이지 윗 부분의 사업단 로고 부분 -->
 <div style="background-color: white; height: 70px; width: 100%;">
-    <a href="index.jsp"><img style="margin-left: 15px; align-content: center;" src="./image/logo.png"></a>
-    <a href="js/register.jsp" style="display: inline; float: right; margin-top: 20px; margin-right: 10px;"><p>회원 가입</p></a>
+    <a href="../index.jsp"><img style="margin-left: 15px; align-content: center;" src="../image/logo.png"></a>
+    <a href="register.jsp" style="display: inline; float: right; margin-top: 20px; margin-right: 10px;"><p>회원 가입</p></a>
     <p style="margin-top: 20px; margin-right: 10px; float: right; display: inline"> / </p>
     <a href="" style="display: inline; float: right; margin-top: 20px; margin-right: 10px;"><p>로그인</p></a>
 </div>

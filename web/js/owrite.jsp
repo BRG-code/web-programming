@@ -15,7 +15,6 @@
     <title>파일업로드</title>
 </head>
 <body>
-<h3>파일업로드</h3>
 <%
     String dir = application.getRealPath("/upload");
     int max = 5 * 1024 * 1024;
@@ -30,15 +29,15 @@
         String ofile1 = m.getOriginalFileName("file1");
         String file2 = m.getFilesystemName("file2");
         String ofile2 = m.getOriginalFileName("file2");
-        
+
         Connection con;
         Class.forName("com.mysql.jdbc.Driver").newInstance();
         String url = "jdbc:mysql://35.225.0.199:3306/wppone";
         String id = "wp2p1";
         String pass = "wp2PTwo!";
         con = DriverManager.getConnection(url, id, pass);
-        Calendar cal= Calendar.getInstance();
-        int file_use=0;
+        Calendar cal = Calendar.getInstance();
+        int file_use = 0;
         String file_sql_1;
         String file_sql_2;
         if(file1 == null || file2 == null) {
@@ -97,19 +96,16 @@
         st.close();
         st_no.close();
 
-        System.out.println("성공");
+        out.println("<script>\n" +
+                "            alert(\"게시글이 업로드 되었습니다.\");\n" +
+                "            location.href=\"notice.jsp\";\n" +
+                "        </script>");
 
-%>
-
-<br><br>
-
-        <% if(file1 != null) { %>
-        <p> 업로드파일1 : <a href=/upload/<%=file1%>><%=ofile1%></a>
-        <% }
-        if(file2 != null) {%>
-        <p>업로드 파일2 : <a href=/upload/<%=file2%>><%=ofile2%></a>
-        <% }
-        }catch(Exception e){
+        } catch(Exception e) {
+            out.println("<script>\n" +
+                    "    alert(\"게시글 업로드 실패.\");\n" +
+                    "    location.href=\"notice.jsp\";\n" +
+                    "</script>");
             e.printStackTrace();
         }
 %>

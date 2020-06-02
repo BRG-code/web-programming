@@ -5,10 +5,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- DB에서 지정된 글을 받아옴. -->
 <c:set var="sql" value="SELECT title, uploadtime, view, file, comment, u.name as name FROM table as n JOIN user as u ON u.id = n.id WHERE no = ?" />
+<c:set var="viewupdate" value="UPDATE table SET view = view + 1 WHERE no = ?" />
+
 
 <c:choose>
     <c:when test="${param.boardno eq 23}">
         <c:set var="sql" value="${fn:replace(sql, 'table', 'notice')}" />
+        <c:set var="viewupdate" value="${fn:replace(viewupdate, 'table', 'notice')}" />
     </c:when>
 </c:choose>
 
@@ -17,6 +20,10 @@
     <sql:param value="${param.articleno}" />
 </sql:query>
 
+<sql:update var="view" dataSource="jdbc/mydb">
+    <c:out value="${viewupdate}" />
+    <sql:param value="${param.articleno}" />
+</sql:update>
 
 <html>
 <head>
@@ -31,7 +38,7 @@
 <body>
 <!-- 웹 페이지 윗 부분의 사업단 로고 부분 -->
 <div style="background-color: white; height: 70px; width: 100%;">
-    <img style="margin-left: 15px; align-content: center;" src="../image/logo.png">
+    <a href="../index.jsp"><img style="margin-left: 15px; align-content: center;" src="../image/logo.png"></a>
 </div>
 
 <!-- 교육 프로그램 부분 -->
@@ -80,12 +87,69 @@
 
     <!-- 첨부 파일이 있는 경우 -->
     <c:if test="${row.file eq 1}">
-    <div class="article_area" style="border-top: 1px dashed #cccccc; border-bottom: 1px dashed #cccccc">
+    <div class="article_area" style="margin-bottom: 1px; border-top: 1px dashed #cccccc; border-bottom: 1px dashed #cccccc">
         <div style="height: 10px"></div>
-        <p style="font-size: 10pt">- 첨부파일</p>
+        <p style="font-size: 13pt">- 첨부파일</p>
+        <!-- 첨부 파일 갖고오기 -->
+        <c:set var="sql" value="SELECT filename, size, link FROM file WHERE board = boardno AND article = ?" />
+        <c:choose>
+            <c:when test="${param.boardno eq 23}">
+                <c:set var="sql" value="${fn:replace(sql, 'boardno', '23')}" />
+            </c:when>
+        </c:choose>
+
+        <sql:query var="file" dataSource="jdbc/mydb">
+            <c:out value="${sql}" escapeXml="false"/>
+            <sql:param value="${param.articleno}"/>
+        </sql:query>
+
+        <c:forEach var="row" items="${file.rows}">
+            <a href="../upload/${row.link}"><p>${row.filename}</p></a>
+        </c:forEach>
     </div>
     </c:if>
 </c:forEach>
+
+<!-- 이전 글 / 다음 글 -->
+<div class="article_area" style="margin-top: 25px; padding-top: 10px; padding-bottom: 10px; height: 45px; border-top: 1px dashed #cccccc; border-bottom: 1px dashed #cccccc">
+    <!-- 이전 글 갖고오기 -->
+    <c:set var="sql" value="SELECT title, no FROM table WHERE no < ? ORDER BY no DESC" />
+    <c:choose>
+    <c:when test="${param.boardno eq 23}">
+        <c:set var="sql" value="${fn:replace(sql, 'table', 'notice')}" />
+    </c:when>
+    </c:choose>
+
+    <sql:query var="next" dataSource="jdbc/mydb">
+        <c:out value="${sql}" escapeXml="false"/>
+        <sql:param value="${param.articleno}" />
+    </sql:query>
+
+    <c:if test="${fn:length(rs.rows) != 0}">
+        <c:forEach var="row" end="0" items="${next.rows}">
+            <a style="float: left; display: inline" href="article_viewer.jsp?boardno=${param.boardno}&articleno=${row.no}"><p style="font-size: 12pt">이전글 | ${row.title}</p></a>
+        </c:forEach>
+    </c:if>
+
+    <!-- 다음 글 갖고오기 -->
+    <c:set var="sql" value="SELECT title, no FROM table WHERE no > ? ORDER BY no DESC" />
+    <c:choose>
+    <c:when test="${param.boardno eq 23}">
+        <c:set var="sql" value="${fn:replace(sql, 'table', 'notice')}" />
+    </c:when>
+    </c:choose>
+
+    <sql:query var="next" dataSource="jdbc/mydb">
+        <c:out value="${sql}" escapeXml="false"/>
+        <sql:param value="${param.articleno}" />
+    </sql:query>
+
+    <c:if test="${fn:length(rs.rows) != 0}">
+        <c:forEach var="row" end="0" items="${next.rows}">
+            <a style="float: right; display: inline" href="article_viewer.jsp?boardno=${param.boardno}&articleno=${row.no}"><p style="font-size: 12pt">다음글 | ${row.title}</p></a>
+        </c:forEach>
+    </c:if>
+</div>
 
 <c:if test="${fn:length(rs.rows) eq 0}">
     <h3>게시글이 없습니다.</h3>
