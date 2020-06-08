@@ -44,10 +44,11 @@
             width: auto;
         }
     </style>
-<form style="padding-left: 20%; width: 50%" class="write-area" method="post" action="return_login_result.jsp">
-    아이디 : <input type="text" name="id"> <br>
-    비밀번호 : <input type="password" name="pw"> <br>
-    <div style="width: 10px; height: 10px;"></div>
+
+    <form style="padding-left: 20%; width: 50%" class="write-area" method="post" action="return_login_result.jsp">
+        아이디 : <input type="text" name="id"> <br>
+        비밀번호 : <input type="password" name="pw"> <br>
+        <div style="width: 10px; height: 10px;"></div>
     <input type="submit" value="로그인">
 </form>
 </div>

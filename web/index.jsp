@@ -61,7 +61,7 @@
     <a href="js/login.jsp" style="display: inline; float: right; margin-top: 20px; margin-right: 10px;"><p>로그인</p></a>
   </c:if>
   <c:if test="${!empty sessionScope.loginedid}">
-    <a href="js/logout.jsp" style="display: inline; float: right; margin-top: 20px; margin-right: 10px;"><p>로그아웃</p></a>
+    <a href="js/return_logout_result.jsp" style="display: inline; float: right; margin-top: 20px; margin-right: 10px;"><p>로그아웃</p></a>
     <p style="margin-top: 20px; margin-right: 10px; float: right; display: inline">${sessionScope.loginedname}님 환영합니다.  |   </p>
   </c:if>
 </div>

@@ -1,7 +1,10 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="com.oreilly.servlet.*"%>
-<%@ page import="com.oreilly.servlet.multipart.*"%>
-<%@ page import="java.sql.*" %>
+<%@ page import="com.oreilly.servlet.MultipartRequest" %>
+<%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.util.ArrayList" %>
 
 <% request.setCharacterEncoding("UTF-8"); %>
@@ -14,7 +17,7 @@
 <%
     String dir = application.getRealPath("/upload");
 
-    int max = 5 * 1024 * 1024; // 5MB 제한
+    int max = 5 * 1024 * 1024; // 5MB
 
     try {
         MultipartRequest m = new MultipartRequest(request, dir, max, "UTF-8", new DefaultFileRenamePolicy());
@@ -108,13 +111,13 @@
                 "        location.href=\"../index.jsp\"\n" +
                 "    </script>");
     } catch (Exception e) {
-            e.printStackTrace();
+        e.printStackTrace();
 
         out.println("    <script>\n" +
                 "        alert(\"서버 문제로 업로드에 실패하였습니다.\")\n" +
                 "        location.href=\"javascript:history.back(-1)\"\n" +
                 "    </script>");
-        }
+    }
 %>
 </body>
 </html>

@@ -5,7 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!-- DB에서 지정된 글을 받아옴. -->
-<c:set var="sql" value="SELECT title, uploadtime, view, file, comment, u.name as name, department, team, professor, image FROM achieve as n JOIN user as u ON u.id = n.id WHERE no = ?" />
+<c:set var="sql" value="SELECT no, title, uploadtime, view, file, comment, u.name as name, department, team, professor, image FROM achieve as n JOIN user as u ON u.id = n.id WHERE no = ?" />
 <c:set var="viewupdate" value="UPDATE achieve SET view = view + 1 WHERE no = ?" />
 
 <sql:query var="rs" dataSource="jdbc/mydb">
@@ -38,7 +38,7 @@
         <a href="login.jsp" style="display: inline; float: right; margin-top: 20px; margin-right: 10px;"><p>로그인</p></a>
     </c:if>
     <c:if test="${!empty sessionScope.loginedid}">
-        <a href="logout.jsp" style="display: inline; float: right; margin-top: 20px; margin-right: 10px;"><p>로그아웃</p></a>
+        <a href="return_logout_result.jsp" style="display: inline; float: right; margin-top: 20px; margin-right: 10px;"><p>로그아웃</p></a>
         <p style="margin-top: 20px; margin-right: 10px; float: right; display: inline">${sessionScope.loginedname}님 환영합니다.  |   </p>
     </c:if>
 </div>
@@ -104,11 +104,14 @@
                 <sql:param value="${param.articleno}"/>
             </sql:query>
 
-            <c:forEach var="row" items="${file.rows}">
-                <a href="../upload/${row.link}"><p>${row.filename}</p></a>
+            <c:forEach var="filerow" items="${file.rows}">
+                <a href="../upload/${filerow.link}"><p>${filerow.filename} (크기: ${filerow.size} bytes)</p></a>
             </c:forEach>
         </div>
     </c:if>
+
+    <c:set var="num" value="${row.no}"/>
+
 </c:forEach>
 
 <!-- 이전 글 / 다음 글 -->
@@ -147,12 +150,19 @@
         <p style="float: right; display: inline; font-size: 12pt">다음글이 없습니다.</p>
     </c:if>
 
-
-
     <c:if test="${e != null}">
         ${e}
     </c:if>
 </c:catch>
+
+    <!-- 수정, 삭제 버튼 -->
+    <div style="margin-top: 50px;">
+        <a href="write_achieve.jsp?num=${num}"><button>수정</button></a>
+        <a href="return_delete_result.jsp?num=${num}"><button>삭제</button></a>
+    </div>
+
+    <!-- 이쁘게 보이기 위한 공백 -->
+    <div style="width: 100%; height: 100px;"></div>
 </div>
 </body>
 </html>

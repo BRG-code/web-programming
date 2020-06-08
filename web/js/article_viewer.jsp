@@ -56,7 +56,7 @@
         <a href="login.jsp" style="display: inline; float: right; margin-top: 20px; margin-right: 10px;"><p>로그인</p></a>
     </c:if>
     <c:if test="${!empty sessionScope.loginedid}">
-        <a href="logout.jsp" style="display: inline; float: right; margin-top: 20px; margin-right: 10px;"><p>로그아웃</p></a>
+        <a href="return_logout_result.jsp" style="display: inline; float: right; margin-top: 20px; margin-right: 10px;"><p>로그아웃</p></a>
         <p style="margin-top: 20px; margin-right: 10px; float: right; display: inline">${sessionScope.loginedname}님 환영합니다.  |   </p>
     </c:if>
 </div>
@@ -152,7 +152,7 @@
         </sql:query>
 
         <c:forEach var="row" items="${file.rows}">
-            <a href="../upload/${row.link}"><p>${row.filename}</p></a>
+            <a href="../upload/${row.link}"><p>${row.filename} (크기: ${row.size} bytes)</p></a>
         </c:forEach>
     </div>
     </c:if>
