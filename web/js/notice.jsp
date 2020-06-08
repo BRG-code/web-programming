@@ -120,10 +120,21 @@
 </head>
 
 <body>
+
 <!-- 웹 페이지 윗 부분의 사업단 로고 부분 -->
 <div style="background-color: white; height: 70px; width: 100%;">
   <a href="../index.jsp"><img style="margin-left: 15px; align-content: center;" src="../image/logo.png"></a>
+  <c:if test="${empty sessionScope.loginedid}">
+    <a href="register.jsp" style="display: inline; float: right; margin-top: 20px; margin-right: 10px;"><p>회원 가입</p></a>
+    <p style="margin-top: 20px; margin-right: 10px; float: right; display: inline"> / </p>
+    <a href="login.jsp" style="display: inline; float: right; margin-top: 20px; margin-right: 10px;"><p>로그인</p></a>
+  </c:if>
+  <c:if test="${!empty sessionScope.loginedid}">
+    <a href="logout.jsp" style="display: inline; float: right; margin-top: 20px; margin-right: 10px;"><p>로그아웃</p></a>
+    <p style="margin-top: 20px; margin-right: 10px; float: right; display: inline">${sessionScope.loginedname}님 환영합니다.  |   </p>
+  </c:if>
 </div>
+
 
 <!-- 교육 프로그램 부분 -->
 <div class="sub-title">
@@ -136,8 +147,8 @@
     <div style="text-align: center;" class="sub7_tab_menu">
       <a href="../index.jsp" style="display: inline-block;" class="sub7_tab">소개</a>
       <a href="../js/notice.jsp" style="display: inline-block;" class="sub7_tab check" >공지사항</a>
-      <a href="" style="display: inline-block;" class="sub7_tab">서식</a>
-      <a href="" style="display: inline-block;" class="sub7_tab">성과</a>
+      <a href="./form.jsp" style="display: inline-block;" class="sub7_tab">서식</a>
+      <a href="./achieve.jsp" style="display: inline-block;" class="sub7_tab">성과</a>
     </div>
 
     <!-- 검색 창 -->
@@ -211,7 +222,7 @@
               </sql:query>
 
               <c:forEach var="fileimf" end="0" items="${file.rows}">
-                <td style="width: 10%;"><a href="../upload/${fileimf.link}"><img src="../image/icon_file.png"></td></a>
+                <td style="width: 10%;"><a href="../upload/${fileimf.link}"><img src="../image/icon_file.png"></a></td>
               </c:forEach>
             </c:when>
             <c:otherwise>
@@ -233,7 +244,7 @@
           <p style="text-align: justify; display: inline; font-size: 24px"><c:out value="${i}   " /></p>
         </c:if>
         <c:if test="${i != page}">
-          <a href="notice.jsp?page=${i}"><p style="text-align: justify; display: inline; font-size: 24px">${i}   </p></a>
+          <a href="?page=${i}"><p style="text-align: justify; display: inline; font-size: 24px">${i}   </p></a>
         </c:if>
       </c:forEach>
     </div>

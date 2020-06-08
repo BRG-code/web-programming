@@ -5,23 +5,34 @@
 <%@ page import="java.util.ArrayList" %>
 
 <% request.setCharacterEncoding("UTF-8"); %>
-
 <html>
 <head>
-    <title>파일업로드</title>
+    <title>성과 제출</title>
 </head>
 <body>
 <%
-    String dir = application.getRealPath("/upload");
+    String dir = application.getRealPath("/achieve");
     int max = 5 * 1024 * 1024; // 5MB 제한
     try {
+
+        Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+        String url = "jdbc:mysql://35.225.0.199:3306/wppone";
+        String id = "wp2p1";
+        String pass = "wp2PTwo!";
+
+        Connection con = DriverManager.getConnection(url, id, pass);
         MultipartRequest m = new MultipartRequest(request, dir, max, "UTF-8", new DefaultFileRenamePolicy());
+
+        String department = m.getParameter("department");
+        String team = m.getParameter("team");
+        String professor = m.getParameter("professor");
         String title = m.getParameter("title");
-        String contents = m.getParameter("contents");
+        String comment = m.getParameter("comment");
+
         // getFilesystemName: 서버에 올라간 파일명
         // OriginalFileName: 원본 파일명
         ArrayList<String> filelist = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             String file_para = "file" + (i + 1);
             filelist.add(m.getFilesystemName(file_para));
             filelist.add(m.getOriginalFileName(file_para));
@@ -34,22 +45,22 @@
                 file_use = true;
             }
         }
-        Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-        String url = "jdbc:mysql://35.225.0.199:3306/wppone";
-        String id = "wp2p1";
-        String pass = "wp2PTwo!";
-        Connection con = DriverManager.getConnection(url, id, pass);
+
+
         // 첨부파일을 제외한 내용을 DB에 INSERT
-        String sql = "insert into introduce(title, id, uploadtime, view, file, comment) values (?, ?, now(), 0, ?, ?)";
+        String sql = "insert into achieve(title, id, uploadtime, department, team, professor, image, view, file, comment) values (?, ?, now(), ?, ?, ?, ?, 0, ?, ?)";
         PreparedStatement st = con.prepareStatement(sql);
         st.setString(1, title);
         st.setString(2, (String) session.getAttribute("loginedid"));
-        st.setBoolean(3, file_use);
-        st.setString(4, contents);
+        st.setString(3, department);
+        st.setString(4, team);
+        st.setString(5, professor);
+        st.setString(6,  "../achieve/" + filelist.get(0));
+        st.setBoolean(7, file_use);
+        st.setString(8, comment);
         st.executeUpdate();
         st.close();
-        // 아까 올라간 글의 고유 번호를 받아옴.
-        String num_query = "select no from introduce WHERE title = ? AND id = ?";
+        String num_query = "select no from achieve WHERE title = ? AND id = ?";
         PreparedStatement num_sql = con.prepareStatement(num_query);
         num_sql.setString(1, title);
         num_sql.setString(2, (String) session.getAttribute("loginedid"));
@@ -73,8 +84,8 @@
                 PreparedStatement ps = con.prepareStatement(file_sql);
                 ps.setString(1, filelist.get(i + 1));
                 ps.setLong(2, size);
-                ps.setString(3, filelist.get(i));
-                ps.setInt(4, 22);
+                ps.setString(3,  "../achieve/" + filelist.get(i));
+                ps.setInt(4, 25);
                 ps.setInt(5, f_no);
                 // 쿼리 실행
                 ps.executeUpdate();
@@ -87,7 +98,7 @@
                 "        alert(\"업로드가 완료되었습니다.\")\n" +
                 "        location.href=\"../index.jsp\"\n" +
                 "    </script>");
-    } catch (Exception e) {
+    }catch(Exception e){
         e.printStackTrace();
         out.println("    <script>\n" +
                 "        alert(\"서버 문제로 업로드에 실패하였습니다.\")\n" +

@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!-- DB에서 지정된 글을 받아옴. -->
 <c:set var="sql" value="SELECT title, uploadtime, view, file, comment, u.name as name FROM table as n JOIN user as u ON u.id = n.id WHERE no = ?" />
 <c:set var="viewupdate" value="UPDATE table SET view = view + 1 WHERE no = ?" />
@@ -12,6 +13,16 @@
     <c:when test="${param.boardno eq 23}">
         <c:set var="sql" value="${fn:replace(sql, 'table', 'notice')}" />
         <c:set var="viewupdate" value="${fn:replace(viewupdate, 'table', 'notice')}" />
+    </c:when>
+
+    <c:when test="${param.boardno eq 22}">
+        <c:set var="sql" value="${fn:replace(sql, 'table', 'introduce')}" />
+        <c:set var="viewupdate" value="${fn:replace(viewupdate, 'table', 'introduce')}" />
+    </c:when>
+
+    <c:when test="${param.boardno eq 24}">
+        <c:set var="sql" value="${fn:replace(sql, 'table', 'form')}" />
+        <c:set var="viewupdate" value="${fn:replace(viewupdate, 'table', 'form')}" />
     </c:when>
 </c:choose>
 
@@ -39,6 +50,15 @@
 <!-- 웹 페이지 윗 부분의 사업단 로고 부분 -->
 <div style="background-color: white; height: 70px; width: 100%;">
     <a href="../index.jsp"><img style="margin-left: 15px; align-content: center;" src="../image/logo.png"></a>
+    <c:if test="${empty sessionScope.loginedid}">
+        <a href="register.jsp" style="display: inline; float: right; margin-top: 20px; margin-right: 10px;"><p>회원 가입</p></a>
+        <p style="margin-top: 20px; margin-right: 10px; float: right; display: inline"> / </p>
+        <a href="login.jsp" style="display: inline; float: right; margin-top: 20px; margin-right: 10px;"><p>로그인</p></a>
+    </c:if>
+    <c:if test="${!empty sessionScope.loginedid}">
+        <a href="logout.jsp" style="display: inline; float: right; margin-top: 20px; margin-right: 10px;"><p>로그아웃</p></a>
+        <p style="margin-top: 20px; margin-right: 10px; float: right; display: inline">${sessionScope.loginedname}님 환영합니다.  |   </p>
+    </c:if>
 </div>
 
 <!-- 교육 프로그램 부분 -->
@@ -49,11 +69,30 @@
 <div style="margin-left: 100px; margin-right: 100px;" id="content" class="content">
     <div>
         <h3 style="margin-left: 30px; font-weight: bold; font-size: 24pt">캡스톤디자인</h3>
+
         <div style="text-align: center;" class="sub7_tab_menu">
-            <a href="../index.jsp" style="display: inline-block;" class="sub7_tab">소개</a>
-            <a href="../js/notice.jsp" style="display: inline-block;" class="sub7_tab check">공지사항</a>
-            <a href="" style="display: inline-block;" class="sub7_tab">서식</a>
-            <a href="" style="display: inline-block;" class="sub7_tab">성과</a>
+            <c:choose>
+                <c:when test="${param.boardno eq 23}">
+                    <a href="../index.jsp" style="display: inline-block;" class="sub7_tab">소개</a>
+                    <a href="notice.jsp" style="display: inline-block;" class="sub7_tab check">공지사항</a>
+                    <a href="form.jsp" style="display: inline-block;" class="sub7_tab">서식</a>
+                    <a href="achieve.jsp" style="display: inline-block;" class="sub7_tab">성과</a>
+                </c:when>
+
+                <c:when test="${param.boardno eq 22}">
+                    <a href="../index.jsp" style="display: inline-block;" class="sub7_tab check">소개</a>
+                    <a href="notice.jsp" style="display: inline-block;" class="sub7_tab">공지사항</a>
+                    <a href="form.jsp" style="display: inline-block;" class="sub7_tab">서식</a>
+                    <a href="achieve.jsp" style="display: inline-block;" class="sub7_tab">성과</a>
+                </c:when>
+
+                <c:when test="${param.boardno eq 24}">
+                    <a href="../index.jsp" style="display: inline-block;" class="sub7_tab">소개</a>
+                    <a href="notice.jsp" style="display: inline-block;" class="sub7_tab">공지사항</a>
+                    <a href="form.jsp" style="display: inline-block;" class="sub7_tab check">서식</a>
+                    <a href="achieve.jsp" style="display: inline-block;" class="sub7_tab">성과</a>
+                </c:when>
+            </c:choose>
         </div>
     </div>
 </div>
@@ -80,9 +119,10 @@
         <div style="height: 10px"></div>
     </div>
 
+    <% pageContext.setAttribute("newLineChar", "\n"); %>
     <!-- 내용 표시 -->
     <div class="article_area">
-        <p style="font-size: 13pt">${row.comment}</p>
+        <p style="font-size: 13pt">${fn:replace(row.comment, newLineChar, "<br/>")}</p>
     </div>
 
     <!-- 첨부 파일이 있는 경우 -->
@@ -95,6 +135,14 @@
         <c:choose>
             <c:when test="${param.boardno eq 23}">
                 <c:set var="sql" value="${fn:replace(sql, 'boardno', '23')}" />
+            </c:when>
+
+            <c:when test="${param.boardno eq 22}">
+                <c:set var="sql" value="${fn:replace(sql, 'boardno', '22')}" />
+            </c:when>
+
+            <c:when test="${param.boardno eq 24}">
+                <c:set var="sql" value="${fn:replace(sql, 'boardno', '24')}" />
             </c:when>
         </c:choose>
 
@@ -113,30 +161,50 @@
 <!-- 이전 글 / 다음 글 -->
 <div class="article_area" style="margin-top: 25px; padding-top: 10px; padding-bottom: 10px; height: 45px; border-top: 1px dashed #cccccc; border-bottom: 1px dashed #cccccc">
     <!-- 이전 글 갖고오기 -->
-    <c:set var="sql" value="SELECT title, no FROM table WHERE no < ? ORDER BY no DESC" />
+    <c:set var="sql" value="SELECT title, no FROM table WHERE no < ? ORDER BY no DESC LIMIT 1" />
     <c:choose>
-    <c:when test="${param.boardno eq 23}">
-        <c:set var="sql" value="${fn:replace(sql, 'table', 'notice')}" />
-    </c:when>
+        <c:when test="${param.boardno eq 23}">
+            <c:set var="sql" value="${fn:replace(sql, 'table', 'notice')}" />
+        </c:when>
+
+        <c:when test="${param.boardno eq 22}">
+            <c:set var="sql" value="${fn:replace(sql, 'table', 'introduce')}" />
+        </c:when>
+
+        <c:when test="${param.boardno eq 24}">
+            <c:set var="sql" value="${fn:replace(sql, 'table', 'form')}" />
+        </c:when>
     </c:choose>
 
-    <sql:query var="next" dataSource="jdbc/mydb">
+    <sql:query var="previous" dataSource="jdbc/mydb">
         <c:out value="${sql}" escapeXml="false"/>
         <sql:param value="${param.articleno}" />
     </sql:query>
 
-    <c:if test="${fn:length(rs.rows) != 0}">
-        <c:forEach var="row" end="0" items="${next.rows}">
+    <c:if test="${fn:length(previous.rows) != 0}">
+        <c:forEach var="row" items="${previous.rows}">
             <a style="float: left; display: inline" href="article_viewer.jsp?boardno=${param.boardno}&articleno=${row.no}"><p style="font-size: 12pt">이전글 | ${row.title}</p></a>
         </c:forEach>
     </c:if>
 
+    <c:if test="${fn:length(previous.rows) == 0}">
+        <p style="float: left; display: inline; font-size: 12pt">이전글이 없습니다.</p>
+    </c:if>
+
     <!-- 다음 글 갖고오기 -->
-    <c:set var="sql" value="SELECT title, no FROM table WHERE no > ? ORDER BY no DESC" />
+    <c:set var="sql" value="SELECT title, no FROM table WHERE no > ? ORDER BY no ASC LIMIT 1" />
     <c:choose>
-    <c:when test="${param.boardno eq 23}">
-        <c:set var="sql" value="${fn:replace(sql, 'table', 'notice')}" />
-    </c:when>
+        <c:when test="${param.boardno eq 23}">
+            <c:set var="sql" value="${fn:replace(sql, 'table', 'notice')}" />
+        </c:when>
+
+        <c:when test="${param.boardno eq 22}">
+            <c:set var="sql" value="${fn:replace(sql, 'table', 'introduce')}" />
+        </c:when>
+
+        <c:when test="${param.boardno eq 24}">
+            <c:set var="sql" value="${fn:replace(sql, 'table', 'form')}" />
+        </c:when>
     </c:choose>
 
     <sql:query var="next" dataSource="jdbc/mydb">
@@ -144,16 +212,14 @@
         <sql:param value="${param.articleno}" />
     </sql:query>
 
-    <c:if test="${fn:length(rs.rows) != 0}">
-        <c:forEach var="row" end="0" items="${next.rows}">
-            <a style="float: right; display: inline" href="article_viewer.jsp?boardno=${param.boardno}&articleno=${row.no}"><p style="font-size: 12pt">다음글 | ${row.title}</p></a>
-        </c:forEach>
+    <c:forEach var="row" items="${next.rows}">
+        <a style="float: right; display: inline" href="article_viewer.jsp?boardno=${param.boardno}&articleno=${row.no}"><p style="font-size: 12pt">다음글 | ${row.title}</p></a>
+    </c:forEach>
+
+    <c:if test="${fn:length(next.rows) == 0}">
+        <p style="float: right; display: inline; font-size: 12pt">다음글이 없습니다.</p>
     </c:if>
+
 </div>
-
-<c:if test="${fn:length(rs.rows) eq 0}">
-    <h3>게시글이 없습니다.</h3>
-</c:if>
-
 </body>
 </html>

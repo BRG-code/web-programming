@@ -2,6 +2,30 @@
   <library name="jstl-1.2">
     <CLASSES>
       <root url="jar:///usr/local/apache-tomcat-8.5.54/lib/jstl-1.2.jar!/" />
+      <root url="jar:///usr/local/apache-tomcat-8.5.54/lib/annotations-api.jar!/" />
+      <root url="jar:///usr/local/apache-tomcat-8.5.54/lib/catalina-ant.jar!/" />
+      <root url="jar:///usr/local/apache-tomcat-8.5.54/lib/catalina-ha.jar!/" />
+      <root url="jar:///usr/local/apache-tomcat-8.5.54/lib/catalina-storeconfig.jar!/" />
+      <root url="jar:///usr/local/apache-tomcat-8.5.54/lib/catalina-tribes.jar!/" />
+      <root url="jar:///usr/local/apache-tomcat-8.5.54/lib/catalina.jar!/" />
+      <root url="jar:///usr/local/apache-tomcat-8.5.54/lib/cos.jar!/" />
+      <root url="jar:///usr/local/apache-tomcat-8.5.54/lib/ecj-4.6.3.jar!/" />
+      <root url="jar:///usr/local/apache-tomcat-8.5.54/lib/el-api.jar!/" />
+      <root url="jar:///usr/local/apache-tomcat-8.5.54/lib/jasper-el.jar!/" />
+      <root url="jar:///usr/local/apache-tomcat-8.5.54/lib/jasper.jar!/" />
+      <root url="jar:///usr/local/apache-tomcat-8.5.54/lib/jaspic-api.jar!/" />
+      <root url="jar:///usr/local/apache-tomcat-8.5.54/lib/jsp-api.jar!/" />
+      <root url="jar:///usr/local/apache-tomcat-8.5.54/lib/mysql-connector-java-8.0.20.jar!/" />
+      <root url="jar:///usr/local/apache-tomcat-8.5.54/lib/servlet-api.jar!/" />
+      <root url="jar:///usr/local/apache-tomcat-8.5.54/lib/tomcat-api.jar!/" />
+      <root url="jar:///usr/local/apache-tomcat-8.5.54/lib/tomcat-coyote.jar!/" />
+      <root url="jar:///usr/local/apache-tomcat-8.5.54/lib/tomcat-dbcp.jar!/" />
+      <root url="jar:///usr/local/apache-tomcat-8.5.54/lib/tomcat-jdbc.jar!/" />
+      <root url="jar:///usr/local/apache-tomcat-8.5.54/lib/tomcat-jni.jar!/" />
+      <root url="jar:///usr/local/apache-tomcat-8.5.54/lib/tomcat-util-scan.jar!/" />
+      <root url="jar:///usr/local/apache-tomcat-8.5.54/lib/tomcat-util.jar!/" />
+      <root url="jar:///usr/local/apache-tomcat-8.5.54/lib/tomcat-websocket.jar!/" />
+      <root url="jar:///usr/local/apache-tomcat-8.5.54/lib/websocket-api.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

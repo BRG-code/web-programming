@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+
+<Resource name="jdbc/mydb" auth="Container" type="javax.sql.DataSource"
+          maxActive="100" maxIdle="30" maxWait="10000"
+          username="wp2p1" password="wp2PTwo!"
+          driverClassName="com.mysql.cj.jdbc.Driver"
+          url="jdbc:mysql://35.225.0.199:3306/wppone" />
+
+</Context>
