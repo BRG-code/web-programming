@@ -45,7 +45,6 @@
         <p>이메일 <span class="necessary">*</span> :</p>
         <input style="width: auto" type="email" name="email" placeholder="example@*****.com" required><br>
 
-        <!-- 주소 입력란 By Daum API-->
         <!-- 우편번호 입력 영역 -->
         <p>우편번호 <span class="necessary">*</span> : </p>
         <input style="width: 20%;" type="text" id="zipcode" name="zipcode" placeholder="우편번호" required><br>
