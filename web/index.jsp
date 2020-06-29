@@ -20,6 +20,7 @@
     <p><c:out value="${sessionScope.loginedname}"/>님으로 로그인되어 있습니다. </p>
     <a href="logout.jsp">로그아웃</a><br>
     <a href="modify.jsp">회원 정보 조회 / 수정</a><br>
+    <a href="return_delete_result.jsp">계정 삭제</a><br>
   </c:if>
 
 </body>
